@@ -17,7 +17,7 @@
 
 <body onLoad="checkSessionValues();displayWarning()">
 
-<!-- menu / navigation bar --> 
+<!-- menu / navigation bar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand">Activity Alarm Clock</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,17 +28,11 @@
       <li class="nav-item active">
         <a class="nav-link" href="index.html">Home<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="about.html">About</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="help.html">Help</a>
-      </li>
     </ul>
   </div>
 </nav>
 
-<!-- show alert if passcode not set --> 
+<!-- show alert if passcode not set -->
 <div id = 'myAlert'></div>
 
 <!--
@@ -48,14 +42,14 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
---> 
+-->
 
-<!-- ALARM SECTION  --> 
-<div id = "alarm" class = "titles"> 
+<!-- ALARM SECTION  -->
+<div id = "alarm" class = "titles">
   <h2> set alarm </h2>
 </div>
 
-<!-- time picker --> 
+<!-- time picker -->
 <div class="box" id = "timePicker" style="margin:10px;">
   <input id="timepkr" style="width:150px;float:left;" class="form-control" placeholder="HH:MM" />
   <button id="timePickerBtn" class="btn btn-primary" onclick="dynamicStyle(); showpickers('timepkr',12);" style="width:40px;float:left;"><i class="fa fa-clock-o"></i>
@@ -63,7 +57,7 @@
 
 <div class="timepicker"></div>  <!--Important to add and keep it seprate to the end-->
 
-<!-- toggle --> 
+<!-- toggle -->
 <div class="box">
 <label class="switch">
   <input type="checkbox" onclick=updateToggle()>
@@ -71,12 +65,12 @@
 </label>
 </div>
 
-<!-- DIFFICULTY SECTION  --> 
-<div id = "difficulty" class = "titles" style="margin-top: 10px;"> 
+<!-- DIFFICULTY SECTION  -->
+<div id = "difficulty" class = "titles" style="margin-top: 10px;">
 <h2> difficulty level </h2>
 </div>
 
-<div> 
+<div>
   <div id = "btn" class="btn-group btn-group-toggle" data-toggle="buttons">
     <label class="btn btn-secondary active">
       <input type="radio" onclick=updateLvl1() name="options" id="option1" autocomplete="off" checked> Easy
@@ -90,7 +84,9 @@
   </div>
 </div>
 
-<!-- FAILSAFE PASSCODE SECTION --> 
+<p></p>
+
+<!-- FAILSAFE PASSCODE SECTION -->
 <div class="alert alert-info" role="alert">Set Failsafe Password</div>
 <div>Your password must be 4 numbers along. Remember to click save!</div>
 
@@ -139,17 +135,17 @@
   function displayWarning() {
     if (sessionStorage.getItem("passcodeSet") == null) {
       console.log('here');
-      document.getElementById('myAlert').innerHTML = '<div class="alert alert-warning alert-dismissible fade show" role="alert" style="text-align: center;"><strong>Hold up MFs!</strong> You should set your failsafe password below.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>'; 
+      document.getElementById('myAlert').innerHTML = '<div class="alert alert-warning alert-dismissible fade show" role="alert" style="text-align: center;"><strong>Hold up MFs!</strong> You should set your failsafe password below.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
     }
   }
 
-  /** 
+  /**
    * update toggle status
-   */ 
+   */
   function updateToggle() {
-    // if block: first time toggling: alarm turned on 
+    // if block: first time toggling: alarm turned on
     if (sessionStorage.getItem("alarmOn") == null) {
-      sessionStorage.setItem("alarmOn", "true"); 
+      sessionStorage.setItem("alarmOn", "true");
       console.log("alarmOn initialized in sessionStorage");
       console.log("alarmOn: " + sessionStorage.getItem("alarmOn"));
 
@@ -169,94 +165,94 @@
   function dynamicStyle() {
     // if block: first time extending margin, not added to session yet
     if (sessionStorage.getItem("marginExtended") == null) {
-      sessionStorage.setItem("marginExtended", "true"); 
-      document.getElementById("difficulty").style.marginTop = "180px"; 
+      sessionStorage.setItem("marginExtended", "true");
+      document.getElementById("difficulty").style.marginTop = "180px";
     } else {
 
       if (sessionStorage.getItem("marginExtended").localeCompare("true") == 0) {
         // margin extended rn, change to collapsed
-        sessionStorage.setItem("marginExtended", "false"); 
-        document.getElementById("difficulty").style.marginTop = "10px"; 
+        sessionStorage.setItem("marginExtended", "false");
+        document.getElementById("difficulty").style.marginTop = "10px";
       } else {
         // margin collapsed rn, change to extended
         sessionStorage.setItem("marginExtended", "true");
-        document.getElementById("difficulty").style.marginTop = "180px"; 
+        document.getElementById("difficulty").style.marginTop = "180px";
       } // end inner if else blcok
 
     } // end outer if else block
   }
 
-  /** 
+  /**
    * display values of sessionStorage items in console
-   */ 
+   */
    function checkSessionValues() {
       console.log("checking session values:")
       console.log("    alarmOn:        " + sessionStorage.getItem("alarmOn"));
-      console.log("    passcodeSet:    " + sessionStorage.getItem("passcodeSet")); 
+      console.log("    passcodeSet:    " + sessionStorage.getItem("passcodeSet"));
       console.log("    passcode:       " + sessionStorage.getItem("passcode"));
       console.log("    level:          " + sessionStorage.getItem("level"));
       console.log("    marginExtended: " + sessionStorage.getItem("marginExtended"));
       console.log("");
    }
 
-  /** 
-   * functions for updating difficulty level on click 
-   */ 
+  /**
+   * functions for updating difficulty level on click
+   */
 
   function updateLvl1() {
-    var difficulty = "easy"; 
+    var difficulty = "easy";
     sessionStorage.setItem("level", difficulty);
     console.log(difficulty);
   }
 
   function updateLvl2() {
-    var difficulty = "medium"; 
+    var difficulty = "medium";
     sessionStorage.setItem("level", difficulty);
      console.log(difficulty);
   }
 
   function updateLvl3() {
-    var difficulty = "hard"; 
+    var difficulty = "hard";
     sessionStorage.setItem("level", difficulty);
     console.log(difficulty);
   }
 
-  /** 
-   * 
-   */ 
+  /**
+   *
+   */
 
   function parseTimeHolder() {
     var timeHolder = "HH:MM"
     if (sessionStorage.getItem("time") == null) {
-      console.log("NOTHING"); 
+      console.log("NOTHING");
     } else {
-      timeHolder = sessionStorage.getItem("time"); 
-      timeSplit = timeHolder.split(":"); 
-      var hr = timeSplit[0]; 
+      timeHolder = sessionStorage.getItem("time");
+      timeSplit = timeHolder.split(":");
+      var hr = timeSplit[0];
       var min = timeSplit[1];
-      var ampm = timeSplit[2]; 
+      var ampm = timeSplit[2];
 
       if (ampm == 0) {
-        ampm = "am"; 
+        ampm = "am";
       } else {
-        ampm = "pm"; 
+        ampm = "pm";
       }
 
       if (hr < 10) {
-        hr = "0" + hr; 
+        hr = "0" + hr;
       }
       if (min < 10) {
-        min = "0" + min; 
+        min = "0" + min;
       }
 
-      timeHolder = hr + ":" + min + " " + ampm; 
-      document.getElementById('timeHolder').value = timeHolder; 
+      timeHolder = hr + ":" + min + " " + ampm;
+      document.getElementById('timeHolder').value = timeHolder;
     }
   }
 
-  /** 
-   * functions for setting passcode 
-   */ 
+  /**
+   * functions for setting passcode
+   */
 
   function checkPassword(param1) {
     var numberArray = document.getElementById('password').value.split(' ');
@@ -276,9 +272,9 @@
       }
 
       if (numberArray.length == 5) {
-        numberArray.pop(); // remove extra comma 
-        sessionStorage.setItem("passcode", numberArray); 
-        sessionStorage.setItem("passcodeSet", "true"); 
+        numberArray.pop(); // remove extra comma
+        sessionStorage.setItem("passcode", numberArray);
+        sessionStorage.setItem("passcodeSet", "true");
         console.log("passcode stored: " + sessionStorage.getItem("passcode"));
         console.log("passcodeSet stored: " + sessionStorage.getItem("passcodeSet"));
         document.getElementById('myAlert').innerHTML = "";

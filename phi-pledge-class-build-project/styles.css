@@ -4,7 +4,6 @@ h1 {
 
 .btn-group button {
 	width:25%;
-	float: center;
 }
 
 .card-deck {
@@ -26,8 +25,8 @@ margin: 10px;
 }
 
 #box {
-float: left;
-width: 50%;
+float: left; 
+width: 50%; 
 }
 
 #btn {
@@ -36,10 +35,6 @@ margin-left: 10px;
 
 #timePicker {
 border:100px;
-}
-
-.input-group {
-	margin-left: 10%
 }
 
   /* The switch - the box around the slider */
